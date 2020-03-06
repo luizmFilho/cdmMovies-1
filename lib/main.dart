@@ -10,8 +10,14 @@ class MoviesAPP extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
       ),
-      home: Container(
-        color: Colors.white,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Filmes"),
+          centerTitle: true,
+        ),
+        body: Container(
+          color: Colors.white,
+        ),
       ),
     );
   }
