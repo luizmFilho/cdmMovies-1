@@ -16,8 +16,13 @@ class MoviesAPP extends StatelessWidget {
           centerTitle: true,
         ),
         body: Container(
-          color: Colors.white,
-        ),
+            color: Colors.white,
+            child: Text("Filmes em Cartaz",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ))),
       ),
     );
   }
