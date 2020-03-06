@@ -5,6 +5,17 @@ void main() => runApp(MoviesAPP());
 class MoviesAPP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return HomePage();
+  }
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
