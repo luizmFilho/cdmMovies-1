@@ -5,18 +5,12 @@ import 'page_1.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Filmes"),
+        centerTitle: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Filmes"),
-          centerTitle: true,
-        ),
-        body: _body(context),
-      ),
+      body: _body(context),
     );
   }
 
@@ -76,9 +70,11 @@ class HomePage extends StatelessWidget {
   }
 
   void _onClickNavigator(BuildContext context, Widget page) {
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return page;
-    }));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => page,
+        ));
   }
 
   RaisedButton _button(context, String str, Function onPressed) {
