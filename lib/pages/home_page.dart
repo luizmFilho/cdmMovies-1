@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'page_1.dart';
+import 'page_2.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -36,8 +37,15 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             _button(
-                context, "Page 1", () => _onClickNavigator(context, Page1())),
-            _button(context, "Page 2", null),
+              context,
+              "Page 1",
+              () => _onClickNavigator(context, Page1()),
+            ),
+            _button(
+              context,
+              "Page 2",
+              () => _onClickNavigator(context, Page2()),
+            ),
             _button(context, "Page 3", null),
           ],
         ),
@@ -69,12 +77,16 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _onClickNavigator(BuildContext context, Widget page) {
-    Navigator.push(
+  Future<void> _onClickNavigator(BuildContext context, Widget page) async {
+    Aluno aluno = await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => page,
         ));
+
+    print("Aluno ${aluno.nome} tem matrícula ${aluno.matricula}");
+
+    //print("Retorno da Página 2 é $str");
   }
 
   RaisedButton _button(context, String str, Function onPressed) {
