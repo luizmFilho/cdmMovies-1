@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'page_1.dart';
 import 'page_2.dart';
@@ -12,6 +13,15 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: _body(context),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            onPressed: () => print("Pressionei o botão!"),
+            child: Icon(Icons.add_shopping_cart),
+          ),
+        ],
+      ),
     );
   }
 
@@ -30,35 +40,49 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Column _buttons(context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _button(
-              context,
-              "Page 1",
-              () => _onClickNavigator(context, Page1()),
-            ),
-            _button(
-              context,
-              "Page 2",
-              () => _onClickNavigator(context, Page2()),
-            ),
-            _button(context, "Page 3", null),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _button(context, "Snack", null),
-            _button(context, "Toast", null),
-            _button(context, "Dialog", null),
-          ],
-        ),
-      ],
-    );
+  _buttons(context) {
+    return Builder(builder: (context) {
+      return Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _button(
+                context,
+                "Page 1",
+                () => _onClickNavigator(context, Page1()),
+              ),
+              _button(
+                context,
+                "Page 2",
+                () => _onClickNavigator(context, Page2()),
+              ),
+              _button(context, "Page 3", null),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _button(
+                context,
+                "Snack",
+                () => _onClickSnack(context),
+              ),
+              _button(
+                context,
+                "Toast",
+                () => _onClickToast(context),
+              ),
+              _button(
+                context,
+                "Dialog",
+                () => _onClickDialog(context),
+              ),
+            ],
+          ),
+        ],
+      );
+    });
   }
 
   Container _pageView() {
@@ -109,5 +133,57 @@ class HomePage extends StatelessWidget {
           fontSize: 30,
           fontWeight: FontWeight.bold,
         ));
+  }
+
+  _onClickDialog(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: AlertDialog(
+              title: Text("Você quer sair do sistema!"),
+              actions: <Widget>[
+                FlatButton(
+                    child: Text("Sim"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      print("Estou saindo do sistema!");
+                    }),
+                FlatButton(
+                    child: Text("Não"),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      print("Vou continuar no sistema!");
+                    }),
+              ],
+            ),
+          );
+        });
+  }
+
+  _onClickSnack(context) {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Filmes de Ação!"),
+        action: SnackBarAction(
+          label: "OK",
+          onPressed: () {
+            print("Agora entendi!");
+          },
+        ),
+      ),
+    );
+  }
+
+  _onClickToast(context) {
+    Fluttertoast.showToast(
+        msg: "Filmes de Ação",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 }
