@@ -1,3 +1,4 @@
+import 'package:cdm_movies/utils/drawer_default.dart';
 import 'package:flutter/material.dart';
 
 class Page1 extends StatelessWidget {
@@ -7,6 +8,7 @@ class Page1 extends StatelessWidget {
         title: Text("Página 1"),
       ),
       body: _body(),
+      drawer: DrawerDefault(),
     );
   }
 

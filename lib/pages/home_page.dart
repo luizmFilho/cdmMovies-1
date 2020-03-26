@@ -1,3 +1,4 @@
+import 'package:cdm_movies/utils/drawer_default.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: DrawerDefault(),
     );
   }
 
@@ -109,7 +110,9 @@ class HomePage extends StatelessWidget {
           builder: (context) => page,
         ));
 
-    print("Aluno ${aluno.nome} tem matrícula ${aluno.matricula}");
+    if (aluno != null) {
+      print("Aluno ${aluno.nome} tem matrícula ${aluno.matricula}");
+    }
 
     //print("Retorno da Página 2 é $str");
   }
